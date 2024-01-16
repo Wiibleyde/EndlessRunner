@@ -6,14 +6,18 @@ public class Player : MonoBehaviour
 {   
     private Vector3 direction;
 
-    public float jumpForce = 8f;
+    private float jumpForce = 6f;
+    private float backflipTorque = 1.5f;
 
     private void Update()
     {
         if (GetComponent<Rigidbody2D>().velocity == Vector2.zero) {
             if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
             {
+                // Do a jump with a backflip
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+                GetComponent<Rigidbody2D>().AddTorque(backflipTorque, ForceMode2D.Impulse);
+                
             }
         }
         if (Input.GetKeyUp(KeyCode.DownArrow))
@@ -29,4 +33,16 @@ public class Player : MonoBehaviour
             Debug.Log("Game Over");
         }
     }
+    
+    // implement score 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Obstacle")) {
+            Debug.Log("Game Over");
+        }
+    }
+    
+    
 }
+    
+
