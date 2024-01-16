@@ -11,9 +11,15 @@ public class Player : MonoBehaviour
     private void Update()
     {
         if (GetComponent<Rigidbody2D>().velocity == Vector2.zero) {
-            if (Input.GetKeyUp(KeyCode.Space)) {
+            if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
+            {
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             }
+        }
+        if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -10), ForceMode2D.Impulse);
+                
         }
     }
 
