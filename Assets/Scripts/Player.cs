@@ -17,9 +17,8 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
             {
-                // Do a jump with a backflip
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-                GetComponent<Rigidbody2D>().AddTorque(backflipTorque, ForceMode2D.Impulse);
+                // GetComponent<Rigidbody2D>().AddTorque(backflipTorque, ForceMode2D.Impulse);
 
             }
         }
@@ -37,6 +36,11 @@ public class Player : MonoBehaviour
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(1);
 
+        }
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+            GameObject.Find("ScoreText").GetComponent<Score>().UpdateScore(1);
         }
     }
 }

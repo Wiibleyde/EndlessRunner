@@ -22,5 +22,7 @@ public class Spawner : MonoBehaviour
             float waitTime = Random.Range(spawnRangeInterval[0], spawnRangeInterval[1]);
             yield return new WaitForSeconds(waitTime);
         }
+
     }
+    
 }
